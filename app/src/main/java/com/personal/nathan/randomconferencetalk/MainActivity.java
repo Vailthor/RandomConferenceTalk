@@ -30,12 +30,26 @@ public class MainActivity extends AppCompatActivity {
         RetrievePage task = new RetrievePage(getApplicationContext());
         talk = task.execute().get();
         String title = talk.substring(47);
+        String year = talk.substring(39, 43);
+        String month = talk.substring(44, 46);
+        if (month.equals("04"))
+            month = "April";
+        else
+            month = "October";
         title = title.replace('-', ' ');
 
+        char[] charTitle = title.toCharArray();
+
+        charTitle[0] = Character.toUpperCase(charTitle[0]);
         for (int i = 1; i < title.length(); i++) {
-            char temp = Character.toUpperCase(title.charAt(i));
+            if (title.charAt(i) == ' ') {
+                i++;
+                char temp = Character.toUpperCase(title.charAt(i));
+                charTitle[i] = temp;
+            }
         }
-        currentTalk.setText("Current Talk:/n" + talk);
+        String userTalk = new String(charTitle);
+        currentTalk.setText("Current Talk:\n" + month + " " + year + "\n"  + userTalk);
     }
 
     public void goToTalk(View view) {
