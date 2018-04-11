@@ -6,6 +6,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.TextView;
+import android.widget.Toast;
 
 /*
 Changes to make:
@@ -26,9 +27,15 @@ public class MainActivity extends AppCompatActivity {
         currentTalk = findViewById(R.id.cTalk);
     }
 
-    public void generate(View view) throws Exception {
+    public void generate(View view)  {
         RetrievePage task = new RetrievePage(getApplicationContext());
-        talk = task.execute().get();
+        try {
+            talk = task.execute().get();
+        }
+        catch (Exception e) {
+            Toast toast = Toast.makeText(this, "Problem generating", Toast.LENGTH_SHORT);
+            toast.show();
+        }
         String title = talk.substring(47);
         String year = talk.substring(39, 43);
         String month = talk.substring(44, 46);
@@ -53,7 +60,17 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void goToTalk(View view) {
-        Intent browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse(talk));
-        startActivity(browserIntent);
+        if (talk == null||talk.isEmpty()) {
+            RetrievePage task = new RetrievePage(getApplicationContext());
+            try {
+                talk = task.execute().get();
+            }
+            catch (Exception e) {
+                Toast toast = Toast.makeText(this, "Problem going to talk", Toast.LENGTH_SHORT);
+                toast.show();
+            }
+        }
+            Intent browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse(talk));
+            startActivity(browserIntent);
     }
 }
