@@ -18,7 +18,7 @@ import java.util.Set;
 /**
  * Will Retrieve a random general conference talk and open it
  */
-class RetrievePage extends AsyncTask<Void, Void, Set<String>> {
+class RetrievePage extends AsyncTask<Void, Void, String> {
 
     Context context;
     public RetrievePage(Context context) {
@@ -31,7 +31,7 @@ class RetrievePage extends AsyncTask<Void, Void, Set<String>> {
      * @return The set of conference talks for the chosen year and month
      */
     @Override
-    protected Set<String> doInBackground(Void... params) {
+    protected String doInBackground(Void... params) {
         Random rand = new Random();
         int monthNum = rand.nextInt(2);
         int yearNum = rand.nextInt(48) + 1971;
@@ -82,22 +82,10 @@ class RetrievePage extends AsyncTask<Void, Void, Set<String>> {
             index++;
         }
         //Log.i("RETRIEVE", "Count: " + talks.size());
-        return talks;
-
-    }
-
-    /**
-     * Will select a random talk from talks and open it in a browser.
-     * @param talks The talks for the given year and month
-     */
-    @Override
-    protected void onPostExecute(Set<String> talks) {
-        Random rand = new Random();
         int talk = rand.nextInt(talks.size());
         String[] checkTalks = talks.toArray(new String[talks.size()]);
-        Intent browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse(checkTalks[talk]));
-        browserIntent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-        context.startActivity(browserIntent);
 
+        return checkTalks[talk];
     }
+
 }

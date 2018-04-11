@@ -1,8 +1,11 @@
 package com.personal.nathan.randomconferencetalk;
 
+import android.content.Intent;
+import android.net.Uri;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.TextView;
 
 /*
 Changes to make:
@@ -14,14 +17,29 @@ have a 'go to talk' button which will make the intent
 
 public class MainActivity extends AppCompatActivity {
 
+    String talk;
+    TextView currentTalk;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        currentTalk = findViewById(R.id.cTalk);
     }
 
-    public void random(View view) throws Exception {
+    public void generate(View view) throws Exception {
         RetrievePage task = new RetrievePage(getApplicationContext());
-        task.execute();
+        talk = task.execute().get();
+        String title = talk.substring(47);
+        title = title.replace('-', ' ');
+
+        for (int i = 1; i < title.length(); i++) {
+            char temp = Character.toUpperCase(title.charAt(i));
+        }
+        currentTalk.setText("Current Talk:/n" + talk);
+    }
+
+    public void goToTalk(View view) {
+        Intent browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse(talk));
+        startActivity(browserIntent);
     }
 }

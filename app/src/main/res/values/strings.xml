@@ -1,4 +1,7 @@
 <resources>
     <string name="app_name">Random Conference Talk</string>
     <string name="Random">Random</string>
+    <string name="Generate">Generate</string>
+    <string name="CurrentTalk">Current Talk:</string>
+    <string name="GoToTalk">Go To Talk</string>
 </resources>
