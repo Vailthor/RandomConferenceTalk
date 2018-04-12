@@ -1,8 +1,5 @@
-package com.personal.nathan.randomconferencetalk;
+package com.personal.nathan.randomgeneralconferencetalk;
 
-import android.content.Context;
-import android.content.Intent;
-import android.net.Uri;
 import android.os.AsyncTask;
 import android.util.Log;
 
@@ -20,10 +17,6 @@ import java.util.Set;
  */
 class RetrievePage extends AsyncTask<Void, Void, String> {
 
-    Context context;
-    public RetrievePage(Context context) {
-        this.context = context.getApplicationContext();
-    }
 
     /**
      * This will randomly choose and year and month to look up and

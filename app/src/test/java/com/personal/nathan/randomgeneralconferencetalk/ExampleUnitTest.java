@@ -1,4 +1,4 @@
-package com.personal.nathan.randomconferencetalk;
+package com.personal.nathan.randomgeneralconferencetalk;
 
 import org.junit.Test;
 

@@ -1,4 +1,4 @@
-package com.personal.nathan.randomconferencetalk;
+package com.personal.nathan.randomgeneralconferencetalk;
 
 import android.content.Intent;
 import android.net.Uri;
@@ -23,12 +23,12 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
-        currentTalk = findViewById(R.id.cTalk);
+        setContentView(com.personal.nathan.randomgeneralconferencetalk.R.layout.activity_main);
+        currentTalk = findViewById(com.personal.nathan.randomgeneralconferencetalk.R.id.cTalk);
     }
 
     public void generate(View view)  {
-        RetrievePage task = new RetrievePage(getApplicationContext());
+        RetrievePage task = new RetrievePage();
         try {
             talk = task.execute().get();
         }
@@ -61,7 +61,7 @@ public class MainActivity extends AppCompatActivity {
 
     public void goToTalk(View view) {
         if (talk == null||talk.isEmpty()) {
-            RetrievePage task = new RetrievePage(getApplicationContext());
+            RetrievePage task = new RetrievePage();
             try {
                 talk = task.execute().get();
             }
