@@ -1,7 +1,6 @@
 package com.personal.nathan.randomgeneralconferencetalk;
 
 import android.os.AsyncTask;
-import android.util.Log;
 
 import java.io.BufferedReader;
 import java.io.InputStream;
@@ -29,7 +28,6 @@ class RetrievePage extends AsyncTask<Void, Void, String> {
         int monthNum = rand.nextInt(2);
         int yearNum = rand.nextInt(48) + 1971;
         String month;
-        //Log.d("RETRIEVE", "Working");
         if (monthNum == 0 || yearNum == 2018)
             month = "04";
         else
@@ -54,7 +52,7 @@ class RetrievePage extends AsyncTask<Void, Void, String> {
             in.close();
         }
         catch (Exception e) {
-            Log.d("RETRIEVE", "Problem " + e);
+            ;
         }
         String page = html.toString();
         String search = "general-conference/" + yearNum + "/" + month + "/";
@@ -69,12 +67,10 @@ class RetrievePage extends AsyncTask<Void, Void, String> {
             if (index != -1) {
                 String line = page.substring(index, indexEnd);
                 keepGoing = talks.add("https://www.lds.org/" + line);
-                //Log.i("RETRIEVE", "https://www.lds.org/" + line);
             }
             count++;
             index++;
         }
-        //Log.i("RETRIEVE", "Count: " + talks.size());
         int talk = rand.nextInt(talks.size());
         String[] checkTalks = talks.toArray(new String[talks.size()]);
 
