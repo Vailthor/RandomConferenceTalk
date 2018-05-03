@@ -55,6 +55,8 @@ public class MainActivity extends AppCompatActivity {
                 charTitle[i] = temp;
             }
         }
+        Toast toast = Toast.makeText(this, "New Talk Found", Toast.LENGTH_SHORT);
+        toast.show();
         String userTalk = new String(charTitle);
         currentTalk.setText("Current Talk:\n" + month + " " + year + "\n"  + userTalk);
     }

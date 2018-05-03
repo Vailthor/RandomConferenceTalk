@@ -4,4 +4,5 @@
     <string name="Generate">1. Generate</string>
     <string name="CurrentTalk">Current Talk:</string>
     <string name="GoToTalk">2. Go To Talk</string>
+    <string name="newtalk">1. New Talk</string>
 </resources>
